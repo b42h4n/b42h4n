@@ -1,0 +1,26 @@
+name: Random gif
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Pick random gif
+        run: |
+          GIF=$(ls *.gif | shuf -n1)
+          sed -i "s|<!-- gif-start -->.*<!-- gif-end -->|<!-- gif-start --><img src=\"$GIF\" width=\"400\"><!-- gif-end -->|" README.md
+
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git diff --quiet || (git commit -am "Random gif" && git push)
