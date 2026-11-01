@@ -1,5 +1,5 @@
 ## Pick a seed to grow
-(requires Chrome 120+, Safari 17.2+, Firefox 130+ versions)
+(browser version required: Chrome 120+, Safari 17.2+, Firefox 130+)
 
 <details name="gif">
 <summary><kbd>💮</kbd></summary>
